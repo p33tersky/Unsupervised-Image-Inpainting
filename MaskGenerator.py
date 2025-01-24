@@ -4,19 +4,19 @@ import os
 import random
 import string
 
-mask = np.zeros((16, 16), dtype=np.uint8)
+mask = np.zeros((32, 32), dtype=np.uint8)
 count_marked = 0  
 
 def on_move(event):
     global count_marked
     if event.xdata is not None and event.ydata is not None and event.button == 1:
         x, y = int(event.xdata), int(event.ydata)
-        if 0 <= x < 16 and 0 <= y < 16 and mask[y, x] == 0:
+        if 0 <= x < 64 and 0 <= y < 64 and mask[y, x] == 0:
             mask[y, x] = 1
             count_marked += 1  
             ax.imshow(mask, cmap="gray")
             plt.draw()
-            if count_marked >= 64:
+            if count_marked >= 200:
                 plt.close() 
 
 fig, ax = plt.subplots()
